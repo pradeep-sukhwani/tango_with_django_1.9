@@ -1,4 +1,41 @@
-<!DOCTYPE html>
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block body_block %}
+
+    <h1>Rango says...</h1>
+    <p>hey there partner!</p>
+    <div>
+        <h2>Most Liked Categories</h2>
+        {% if categories %}
+        <ul>
+            {% for category in categories %}
+                <li>
+                    <a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <strong>There are no categories present.</strong>
+        {% endif %}
+        <h2>Most Viewed Pages</h2>
+        {% if pages %}
+            <ul>
+                {% for page in pages %}
+                    <li>
+                        <a href="{{ page.url }}">{{ page.title }}</a>  - {{ page.category}} ({{ page.views }} view(s))
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    <div>
+        <img src="{% static 'images/rango.jpg' %}" alt="Picture of rango" style="height: 350px;" />
+    </div>
+
+{% endblock %}
+
+<!-- <!DOCTYPE html>
 
 {% load staticfiles %}
 
@@ -9,35 +46,35 @@
 <body>
     <h1>Rango says...</h1>
     <p>hey there partner!</p>
-        <div>
-            <h2>Most Liked Categories</h2>
-            {% if categories %}
+    <div>
+        <h2>Most Liked Categories</h2>
+        {% if categories %}
+        <ul>
+            {% for category in categories %}
+                <li>
+                    <a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <strong>There are no categories present.</strong>
+        {% endif %}
+        <h2>Most Viewed Pages</h2>
+        {% if pages %}
             <ul>
-                {% for category in categories %}
+                {% for page in pages %}
                     <li>
-                        <a href="{% url 'show_category' category.slug %}">{{ category.name }}</a>
+                        <a href="{{ page.url }}">{{ page.title }}</a>  - {{ page.category}} ({{ page.views }} view(s))
                     </li>
                 {% endfor %}
             </ul>
-            {% else %}
-                <strong>There are no categories present.</strong>
-            {% endif %}
-            <h2>Most Viewed Pages</h2>
-            {% if pages %}
-                <ul>
-                    {% for page in pages %}
-                        <li>
-                            <a href="{{ page.url }}">{{ page.title }}</a>  - {{ page.category}} ({{ page.views }} view(s))
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </div>
+        {% endif %}
     </div>
     <div>
-        <a href="/rango/about">About</a><br />
+        <a href="{% url 'rango:about' %}">About</a><br />
+        <a href="{% url 'rango:add_category' %}">Add Category</a><br />
         <img src="{% static 'images/rango.jpg' %}"
             alt="Picture of rango" style="height: 350px;" />
     </div>
 </body>
-</html>
+</html> -->
