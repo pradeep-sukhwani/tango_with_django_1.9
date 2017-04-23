@@ -3,8 +3,13 @@
 
 {% block body_block %}
 
-    <h1>Rango says...</h1>
-    <p>hey there partner!</p>
+    <h1>Rango says...</h1><br />
+    <!-- <p>hey there partner!</p> -->
+    {% if user.is_authenticated %}
+        Hello, {{ user.username }}!
+    {% else %}
+        Hey there partner!
+    {% endif %}
     <div>
         <h2>Most Liked Categories</h2>
         {% if categories %}

@@ -20,8 +20,20 @@
 	</div>
 	<hr />
 	<div>
-		<ul>
+<!-- 		<ul>
 			<li><a href="{% url 'rango:add_category' %}">Add a Category</a></li>
+			<li><a href="{% url 'rango:about' %}">About</a></li>
+			<li><a href="{% url 'rango:index' %}">Index</a></li>
+			<li><a href="{% url 'rango:register' %}">Sign Up</a></li>
+			<li><a href="{% url 'rango:user_login' %}">Login</a></li>
+		</ul> -->
+		<ul>
+			{% if user.is_authenticated %}
+				<li><a href="{% url 'rango:user_logout' %}">Logout</a></li>
+				<li><a href="{% url 'rango:add_category' %}">Add a Category</a></li>
+			{% else %}
+				<li><a href="{% url 'rango:user_login' %}">Login</a></li>
+			{% endif %}
 			<li><a href="{% url 'rango:about' %}">About</a></li>
 			<li><a href="{% url 'rango:index' %}">Index</a></li>
 		</ul>
