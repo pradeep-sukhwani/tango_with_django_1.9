@@ -17,8 +17,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
-
-
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
@@ -38,13 +36,23 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django.contrib.sites',
+    'registration',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rango',
+    'bootstrap_toolkit',
 ]
+
+SITE_ID = 1
+REGISTRATION_OPEN = True
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+LOGIN_REDIRECT_URL = '/rango/'
+LOGIN_URL = '/accounts/login/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

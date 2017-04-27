@@ -1,4 +1,4 @@
-{% extends 'rango/base.html' %}
+{% extends 'base_bootstrap.html' %}
 {% load staticfiles %}
 
 {% block title_block %}
@@ -6,12 +6,20 @@
 {% endblock %}
 
 {% block body_block %}
+	<br />
 	{% if category %}
 		<h1>{{ category.name }}</h1>
 		{% if pages %}
 			<ul>
 				{% for page in pages %}
-					<li><a href="{{ page.url }}">{{ page.title }}</a></li>
+					<li>
+						<a href="{% url 'rango:goto' %}?page_id={{ page.id }}">{{ page.title }}</a>
+						{% if page.views > 1 %}
+							{{ page.views }} views
+						{% else %}
+							{{ page.views }} view
+						{% endif %}
+					</li>
 				{% endfor %}
 			</ul>
 		{% else %}

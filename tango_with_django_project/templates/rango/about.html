@@ -1,4 +1,4 @@
-{% extends 'rango/base.html' %}
+{% extends 'base_bootstrap.html' %}
 {% load staticfiles %}
 
 {% block title_block %}
@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block body_block %}
+	<br />
 	<h1>Rango Says...</h1>
 	<div>
 		This tutorial has been put together by <strong>{{ my_name }}</strong>
@@ -16,6 +17,7 @@
             <br />
 		<img src='/media/cat.jpg' alt="Picture of cat" style="height: 300px;" />
 	</div>
+	 Visits: {{ visits }}
 {% endblock %}
 
 <!-- <!DOCTYPE html>

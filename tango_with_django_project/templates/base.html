@@ -20,19 +20,34 @@
 	</div>
 	<hr />
 	<div>
-<!-- 		<ul>
+<!--  		<ul>
 			<li><a href="{% url 'rango:add_category' %}">Add a Category</a></li>
 			<li><a href="{% url 'rango:about' %}">About</a></li>
 			<li><a href="{% url 'rango:index' %}">Index</a></li>
 			<li><a href="{% url 'rango:register' %}">Sign Up</a></li>
 			<li><a href="{% url 'rango:user_login' %}">Login</a></li>
-		</ul> -->
-		<ul>
+		</ul>
+ 		<ul>
 			{% if user.is_authenticated %}
 				<li><a href="{% url 'rango:user_logout' %}">Logout</a></li>
 				<li><a href="{% url 'rango:add_category' %}">Add a Category</a></li>
+				<li><a href="{% url 'rango:restricted' %}">Restricted Content</a></li>
 			{% else %}
+				<li><a href="{% url 'rango:register' %}">Sign Up</a></li>
 				<li><a href="{% url 'rango:user_login' %}">Login</a></li>
+			{% endif %}
+			<li><a href="{% url 'rango:about' %}">About</a></li>
+			<li><a href="{% url 'rango:index' %}">Index</a></li>
+		</ul> -->
+		<ul>
+			{% if user.is_authenticated %}
+				<li><a href="{% url 'rango:add_category' %}">Add a Category</a></li>
+				<li><a href="{% url 'rango:restricted' %}">Restricted Content</a></li>
+				<li><a href="{% url 'auth_password_change' %}">Change Password</a></li>
+				<li><a href="{% url 'auth_logout' %}?next=/rango/">Logout</a></li>
+			{% else %}
+				<li><a href="{% url 'registration_register' %}">Sign Up</a></li>
+				<li><a href="{% url 'auth_login' %}">Login</a></li>
 			{% endif %}
 			<li><a href="{% url 'rango:about' %}">About</a></li>
 			<li><a href="{% url 'rango:index' %}">Index</a></li>
@@ -42,6 +57,6 @@
 		{% block sidebar_block %}
 			{% get_category_list category %}
 		{% endblock %}
-</div>
+	</div>
 </body>
 </html>

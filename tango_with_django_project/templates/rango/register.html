@@ -1,4 +1,4 @@
-{% extends 'rango/base.html' %}
+{% extends 'base_bootstrap.html' %}
 {% load staticfiles %}
 
 {% block title_block %}
@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block body_block %}
+	<br />
 	<h1>Sign Up for Rango</h1>
 	{% if registered %}
 		Rango says: <strong>thank you for registering!</strong> <br />

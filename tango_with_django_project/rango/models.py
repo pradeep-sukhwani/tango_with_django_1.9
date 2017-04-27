@@ -20,8 +20,10 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = 'Categories'
+
     def __str__(self):
         return self.name
+
 
 class Page(models.Model):
     category = models.ForeignKey(Category)
@@ -32,10 +34,11 @@ class Page(models.Model):
     def __str__(self):
         return self.title
 
-class UserProfile(models.Model):
-	user = models.OneToOneField(User)
-	website = models.URLField(blank=True)
-	picture = models.ImageField(upload_to='profile_images', blank=True)
 
-	def __str__(self):
-		return self.user.username
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    website = models.URLField(blank=True)
+    picture = models.ImageField(upload_to='profile_images', blank=True)
+
+    def __unicode__(self):
+        return self.user.username

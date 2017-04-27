@@ -1,0 +1,19 @@
+{% extends 'base_bootstrap.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	Login
+{% endblock %}
+
+{% block body_block %}
+    <br />
+	<form id="login_form" method="POST" action="{% url 'rango:user_login' %}" >
+		{% csrf_token %}
+		Username: <input type="text" name="username" value="" size="50" /> <br /> <br />
+		Password: <input type="password" name="password" value="" size="50" /> <br />
+        <div style="color:red;">
+            {{ errors_msg }}    
+        </div>
+		<input type="submit" name="submit" value="Login" />
+	</form>
+{% endblock %}

@@ -1,24 +1,29 @@
-{% extends 'rango/base.html' %}
+{% extends 'base_bootstrap.html' %}
 {% load staticfiles %}
 
 {% block title_block %}
 	Add Category
 {% endblock %}
 {% block body_block %}
-	<h1>Add Category</h1>
-	<div>
-		<form id="category_form" method="POST" action="{% url 'rango:add_category' %}">
-			{% csrf_token %}
-			{% for hidden in form.hidden_fields %}
-				{{ hidden }}
-			{% endfor %}
-			{% for field in form.visible_fields %}
-				{{ field.errors }}
-				{{ field.help_text }}
-				{{ field.max_length }}
-				{{ field }}
-			{% endfor %}
-			<input type="submit" name="submit" value="Create Category">
-		</form>
-	</div>
+	{% if user.is_authenticated %}
+		<br />
+		<h1>Add Category</h1>
+		<div>
+			<form role="form" id="category_form" method="POST" action="{% url 'rango:add_category' %}">
+				{% csrf_token %}
+				{% for hidden in form.hidden_fields %}
+					{{ hidden }}
+				{% endfor %}
+				{% for field in form.visible_fields %}
+					{{ field.errors }}
+					{{ field.help_text }}
+					{{ field.max_length }}
+					{{ field }}
+				{% endfor %}
+				<button class="btn btn-primary" type="submit" name="submit">Add Category</button>
+			</form>
+		</div>
+	{% else %}
+		<center><h1>Please <a href="{% url 'rango:user_login' %}">login</a> to view this content</h1></center>
+	{% endif %}
 {% endblock %}
